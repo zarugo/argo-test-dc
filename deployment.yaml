@@ -33,6 +33,8 @@ spec:
           value: pass
         - name: MYSQL_USER
           value: user
+        - name: MYSQL_ROOT_PASSWORD
+          value: test
         - name: DUMMY
           value: test
         image: docker.io/mysql:latest
