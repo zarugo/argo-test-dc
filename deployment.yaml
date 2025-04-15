@@ -32,6 +32,8 @@ spec:
           value: pass
         - name: MYSQL_USER
           value: user
+        - name: DUMMY
+          value: test
         image: image-registry.openshift-image-registry.svc:5000/openshift/mysql@sha256:3c7b2ea314bee059fa306c486fdc38b17811ef4e9fb0afea860e20ea13cdb03e
         imagePullPolicy: IfNotPresent
         name: deploy-mysq
