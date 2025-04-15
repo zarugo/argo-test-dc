@@ -9,6 +9,7 @@ metadata:
     app.kubernetes.io/instance: mysql
     db: mysql
 spec:
+  activeDeadlineSeconds: 45
   replicas: 1
   selector:
     db: mysql
@@ -16,7 +17,7 @@ spec:
   strategy:
     type: Rolling
     rollingParams:
-      timeoutSeconds: 45
+      timeoutSeconds: 30
       maxSurge: 25%
       maxUnavailable: 25%
   template:
