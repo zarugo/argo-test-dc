@@ -1,0 +1,56 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: mysql
+  namespace: test-argo
+  labels:
+    app: mysql
+    app.kubernetes.io/component: mysql
+    app.kubernetes.io/instance: mysql
+    db: mysql
+spec:
+  replicas: 1
+  selector:
+    db: mysql
+    deployment: mysql
+  strategy:
+    type: Rolling
+    rollingParams:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        db: mysql
+        deployment: mysql
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0-el8
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+              protocol: TCP
+          env:
+            - name: MYSQL_DATABASE
+              value: testdb
+            - name: MYSQL_PASSWORD
+              value: pass
+            - name: MYSQL_USER
+              value: user
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - mysql
+        from:
+          kind: ImageStreamTag
+          name: mysql:8.0-el8
+          namespace: openshift
+  revisionHistoryLimit: 10
+  paused: false
+  progressDeadlineSeconds: 600
