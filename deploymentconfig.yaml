@@ -17,7 +17,6 @@ spec:
   strategy:
     type: Rolling
     rollingParams:
-      timeoutSeconds: 30
       maxSurge: 25%
       maxUnavailable: 25%
   template:
