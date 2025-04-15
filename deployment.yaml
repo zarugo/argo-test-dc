@@ -35,7 +35,7 @@ spec:
           value: user
         - name: DUMMY
           value: test
-        image: image-registry.openshift-image-registry.svc:5000/openshift/mysql@sha256:3c7b2ea314bee059fa306c486fdc38b17811ef4e9fb0afea860e20ea13cdb03e
+        image: image-registry.openshift-image-registry.svc:5000/openshift/mysql@sha256:5a771c8d21f7755bf9d0845242ba7d566603de8e09c89781589ed1e9c4e4388b
         imagePullPolicy: IfNotPresent
         name: deploy-mysq
         ports:
