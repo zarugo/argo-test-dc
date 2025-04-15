@@ -23,16 +23,17 @@ spec:
       labels:
         db: mysql
         deployment: mysql
-      annotations:
-        openshift.io/generated-by: OpenShiftNewApp
     spec:
       containers:
         - name: mysql
-          image: mysql:8.0-el8
+          image: image-registry.openshift-image-registry.svc:5000/openshift/mysql@sha256:3c7b2ea314bee059fa306c486fdc38b17811ef4e9fb0afea860e20ea13cdb03e
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3306
               protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
           env:
             - name: MYSQL_DATABASE
               value: testdb
