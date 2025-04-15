@@ -41,6 +41,8 @@ spec:
               value: pass
             - name: MYSQL_USER
               value: user
+            - name: DUMMY
+              value: rollout
   triggers:
     - type: ConfigChange
     - type: ImageChange
