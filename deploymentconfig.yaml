@@ -9,6 +9,7 @@ metadata:
     app.kubernetes.io/instance: mysql
     db: mysql
 spec:
+  progressDeadlineSeconds: 30
   replicas: 1
   selector:
     db: mysql
