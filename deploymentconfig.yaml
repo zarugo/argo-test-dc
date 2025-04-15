@@ -53,5 +53,4 @@ spec:
           name: mysql:8.0-el8
           namespace: openshift
   revisionHistoryLimit: 10
-  paused: false
-  progressDeadlineSeconds: 600
+
