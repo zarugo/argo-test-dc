@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: image-registry.openshift-image-registry.svc:5000/openshift/mysql@sha256:5a771c8d21f7755bf9d0845242ba7d566603de8e09c89781589ed1e9c4e4388b
+          image: docker.io/mysql:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3306
