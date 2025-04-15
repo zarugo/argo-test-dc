@@ -44,14 +44,5 @@ spec:
               value: user
   triggers:
     - type: ConfigChange
-    - type: ImageChange
-      imageChangeParams:
-        automatic: true
-        containerNames:
-          - mysql
-        from:
-          kind: ImageStreamTag
-          name: mysql:8.0-el8
-          namespace: openshift
-  revisionHistoryLimit: 10
+  revisionHistoryLimit: 3
 
