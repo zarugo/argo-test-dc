@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: mysql-2
-    db: mysql-2
-  name: mysql-2
+    app: deploy-mysq
+    db: deploy-mysq
+  name: deploy-mysq
   namespace: test-argo
 spec:
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      db: mysql-2
-      deployment: mysql-2
+      db: deploy-mysq
+      deployment: deploy-mysq
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -21,8 +21,8 @@ spec:
   template:
     metadata:
       labels:
-        db: mysql-2
-        deployment: mysql-2
+        db: deploy-mysq
+        deployment: deploy-mysq
     spec:
       containers:
       - env:
@@ -34,7 +34,7 @@ spec:
           value: user
         image: image-registry.openshift-image-registry.svc:5000/openshift/mysql@sha256:3c7b2ea314bee059fa306c486fdc38b17811ef4e9fb0afea860e20ea13cdb03e
         imagePullPolicy: IfNotPresent
-        name: mysql-2
+        name: deploy-mysq
         ports:
         - containerPort: 3306
           protocol: TCP
