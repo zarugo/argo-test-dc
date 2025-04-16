@@ -15,8 +15,8 @@ spec:
     deployment: mysql
   strategy:
     type: Rolling
-    timeoutSeconds: 45
     rollingParams:
+      timeoutSeconds: 45
       maxSurge: 25%
       maxUnavailable: 25%
   template:
