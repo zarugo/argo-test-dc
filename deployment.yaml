@@ -27,6 +27,8 @@ spec:
     spec:
       containers:
       - env:
+        - name: CHECK_UPFATE
+          value: test
         - name: MYSQL_DATABASE
           value: testdb
         - name: MYSQL_PASSWORD
