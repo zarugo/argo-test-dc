@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: registry.access.redhat.com/ubi8/nginx-120@sha256:4179da7a92814535a2ea0390802a4306906ccd888045819eb9f6e17f2ac35dda
+          image: registry.redhat.io/rhel10/nginx-126@sha256:4c3e5e60d785e6e8bb25a13320fffae720cf0a5d1c3d161c2fb98567421da840
           ports:
             - containerPort: 80
           resources:
