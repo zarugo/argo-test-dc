@@ -6,6 +6,8 @@ metadata:
   labels:
     app: cpu-stress
     version: v1
+  annotations:
+    kubeturbo.io/gitops-policy: local
 spec:
   replicas: 1
   selector:
