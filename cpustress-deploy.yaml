@@ -6,9 +6,6 @@ metadata:
   labels:
     app: cpu-stress
     version: v1
-    kubeturbo.io/skipOperator: "true"
-  annotations:
-    kubeturbo.io/gitops-policy: local
 spec:
   replicas: 1
   selector:
