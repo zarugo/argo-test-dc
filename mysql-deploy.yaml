@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: deploy-mysq
-    db: deploy-mysq
-  name: deploy-mysq
+    app: mysql
+    db: mysql
+  name: mysql
   namespace: test-argo
 spec:
   progressDeadlineSeconds: 30
@@ -12,8 +12,8 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      db: deploy-mysq
-      deployment: deploy-mysq
+      db: mysql
+      deployment: mysql
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -22,8 +22,8 @@ spec:
   template:
     metadata:
       labels:
-        db: deploy-mysq
-        deployment: deploy-mysq
+        db: mysql
+        deployment: mysql
     spec:
       containers:
       - env:
@@ -41,7 +41,7 @@ spec:
           value: test
         image: docker.io/mysql:latest
         imagePullPolicy: IfNotPresent
-        name: deploy-mysq
+        name: mysql
         ports:
         - containerPort: 3306
           protocol: TCP
