@@ -22,7 +22,7 @@ spec:
       - name: cpu-stress-0
         image: docker.io/containerstack/cpustress
         imagePullPolicy: Always
-        args: ["--timeout", "3600s", "--cpu", "12"]
+        args: ["--timeout", "86400s", "--cpu", "12"]
         resources:
           requests:
             cpu: 50m
