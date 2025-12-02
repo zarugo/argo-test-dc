@@ -7,7 +7,7 @@ metadata:
     app: cpu-stress
     version: v1
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: cpu-stress-0
