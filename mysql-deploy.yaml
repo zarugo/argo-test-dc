@@ -1,61 +1,61 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: mysql
-    db: mysql
-  name: mysql
-  namespace: test-argo
-spec:
-  progressDeadlineSeconds: 30
-  replicas: 1
-  revisionHistoryLimit: 10
-  selector:
-    matchLabels:
-      db: mysql
-      deployment: mysql
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
-  template:
-    metadata:
-      labels:
-        db: mysql
-        deployment: mysql
-    spec:
-      containers:
-      - env:
-        - name: CHECK_UPDATE
-          value: test4
-        - name: MYSQL_DATABASE
-          value: testdb
-        - name: MYSQL_PASSWORD
-          value: pass
-        - name: MYSQL_USER
-          value: user
-        - name: MYSQL_ROOT_PASSWORD
-          value: test
-        - name: DUMMY
-          value: test
-        image: docker.io/mysql:latest
-        imagePullPolicy: IfNotPresent
-        name: mysql
-        ports:
-        - containerPort: 3306
-          protocol: TCP
-        resources:
-          requests:
-            cpu: 4000m
-            memory: 5Gi
-          limits:
-            cpu: 10
-            memory: 12Gi
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app: mysql
+#     db: mysql
+#   name: mysql
+#   namespace: test-argo
+# spec:
+#   progressDeadlineSeconds: 30
+#   replicas: 1
+#   revisionHistoryLimit: 10
+#   selector:
+#     matchLabels:
+#       db: mysql
+#       deployment: mysql
+#   strategy:
+#     rollingUpdate:
+#       maxSurge: 25%
+#       maxUnavailable: 25%
+#     type: RollingUpdate
+#   template:
+#     metadata:
+#       labels:
+#         db: mysql
+#         deployment: mysql
+#     spec:
+#       containers:
+#       - env:
+#         - name: CHECK_UPDATE
+#           value: test4
+#         - name: MYSQL_DATABASE
+#           value: testdb
+#         - name: MYSQL_PASSWORD
+#           value: pass
+#         - name: MYSQL_USER
+#           value: user
+#         - name: MYSQL_ROOT_PASSWORD
+#           value: test
+#         - name: DUMMY
+#           value: test
+#         image: docker.io/mysql:latest
+#         imagePullPolicy: IfNotPresent
+#         name: mysql
+#         ports:
+#         - containerPort: 3306
+#           protocol: TCP
+#         resources:
+#           requests:
+#             cpu: 4000m
+#             memory: 5Gi
+#           limits:
+#             cpu: 10
+#             memory: 12Gi
+#         terminationMessagePath: /dev/termination-log
+#         terminationMessagePolicy: File
+#       dnsPolicy: ClusterFirst
+#       restartPolicy: Always
+#       schedulerName: default-scheduler
+#       securityContext: {}
+#       terminationGracePeriodSeconds: 30
