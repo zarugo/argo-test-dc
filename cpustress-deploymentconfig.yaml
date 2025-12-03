@@ -10,7 +10,7 @@ spec:
   selector:
     app: cpu-stress-1
   strategy:
-    type: Replace
+    type: Recreate
   template:
     metadata:
       labels:
