@@ -45,10 +45,10 @@ spec:
               value: "true"
           resources:
             requests:
-              cpu: 4000m
+              cpu: '4'
               memory: 5Gi
             limits:
-              cpu: 10
+              cpu: '10'
               memory: 12Gi
   triggers:
     - type: ConfigChange
