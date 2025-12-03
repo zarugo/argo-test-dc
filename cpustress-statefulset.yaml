@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cpu-stress-2
+  namespace: test-argo
+  labels:
+    app: cpu-stress-2
+    version: v1
+spec:
+  # 'serviceName' is required for StatefulSets to maintain network identity
+  serviceName: "cpu-stress-2" 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cpu-stress-2
+  template:
+    metadata:
+      labels:
+        app: cpu-stress-2
+        version: v1
+    spec:
+      automountServiceAccountToken: false
+      containers:
+      - name: cpu-stress-2
+        image: docker.io/containerstack/cpustress
+        imagePullPolicy: Always
+        args: ["--timeout", "86400s", "--cpu", "12"]
+        resources:
+          requests:
+            cpu: 60m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+        securityContext:
+          readOnlyRootFilesystem: true
+          allowPrivilegeEscalation: false
