@@ -42,6 +42,8 @@ spec:
               value: pass
             - name: MYSQL_USER
               value: user
+            - name: MYSQL_ALLOW_EMPTY_PASSWORD
+              value: true
   triggers:
     - type: ConfigChange
   revisionHistoryLimit: 3
