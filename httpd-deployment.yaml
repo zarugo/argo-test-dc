@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cpu-stress-3
-  namespace: test-argo
+  name: httpd
+  namespace: test-metrics
   labels:
-    app: cpu-stress
+    app: httpd
     version: v1
 spec:
   strategy:
@@ -12,38 +12,31 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cpu-stress-3
+      app: httpd
   template:
     metadata:
       labels:
-        app: cpu-stress-3
+        app: httpd
         version: v1
     spec:
       automountServiceAccountToken: false
       containers:
-      - name: cpu-stress-3-1
-        image: docker.io/containerstack/cpustress
-        imagePullPolicy: Always
-        args: ["--timeout", "86400s", "--cpu", "1"]
+      - name: httpd-1
+        image: quay.io/fedora/httpd-24-micro
         resources:
           requests:
             cpu: 50m
             memory: 128Mi
-          limits:
-            cpu: 300m
         securityContext:
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
-      - name: cpu-stress-3-2
-        image: docker.io/containerstack/cpustress
+      - name: httpd-2
+        image: quay.io/fedora/httpd-24-micro
         imagePullPolicy: Always
-        args: ["--timeout", "86400s", "--cpu", "1"]
         resources:
           requests:
             cpu: 50m
             memory: 128Mi
-          limits:
-            cpu: 300m
         securityContext:
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
