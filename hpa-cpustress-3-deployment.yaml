@@ -3,7 +3,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   labels:
   name: hpa-cpustress-3
-  namespace: test-argocd
+  namespace: test-argo
 spec:
   behavior:
     scaleDown:
