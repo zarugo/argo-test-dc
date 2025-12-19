@@ -2,8 +2,8 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   labels:
-  name: hpa-cpustress-3
-  namespace: test-argo
+  name: hpa-httpd
+  namespace: test-metrics
 spec:
   behavior:
     scaleDown:
@@ -19,17 +19,16 @@ spec:
         value: 1000
       selectPolicy: Max
       stabilizationWindowSeconds: 0
-  maxReplicas: 200
   metrics:
   - containerResource:
-      container: cpu-stress-3-1
+      container: httpd-1
       name: cpu
       target:
         averageUtilization: 90
         type: Utilization
     type: ContainerResource
   - containerResource:
-      container: cpu-stress-3-2
+      container: httpd-2
       name: cpu
       target:
         averageUtilization: 90
@@ -40,4 +39,4 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: cpu-stress-3
+    name: httpd
