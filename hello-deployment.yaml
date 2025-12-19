@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: httpd
+  name: hello
   namespace: test-metrics
   labels:
-    app: httpd
+    app: hello
     version: v1
 spec:
   strategy:
@@ -12,17 +12,18 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: httpd
+      app: hello
   template:
     metadata:
       labels:
-        app: httpd
+        app: hello
         version: v1
     spec:
       automountServiceAccountToken: false
       containers:
-      - name: httpd-1
-        image: quay.io/fedora/httpd-24-micro
+      - name: hello-1
+        image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+        command: ["/bin/bash", "-c", "echo 'Hello from container 1'; sleep infinity"]
         resources:
           requests:
             cpu: 50m
@@ -30,9 +31,9 @@ spec:
         securityContext:
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
-      - name: httpd-2
-        image: quay.io/fedora/httpd-24-micro
-        imagePullPolicy: Always
+      - name: hello-2
+        image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+        command: ["/bin/bash", "-c", "echo 'Hello from container 2'; sleep infinity"]
         resources:
           requests:
             cpu: 50m
