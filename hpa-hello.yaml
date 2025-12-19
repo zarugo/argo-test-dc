@@ -2,33 +2,19 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   labels:
-  name: hpa-httpd
+  name: hpa-hello
   namespace: test-metrics
 spec:
-  behavior:
-    scaleDown:
-      policies:
-      - periodSeconds: 15
-        type: Percent
-        value: 100
-      selectPolicy: Max
-    scaleUp:
-      policies:
-      - periodSeconds: 5
-        type: Percent
-        value: 1000
-      selectPolicy: Max
-      stabilizationWindowSeconds: 0
   metrics:
   - containerResource:
-      container: httpd-1
+      container: hello-1
       name: cpu
       target:
         averageUtilization: 90
         type: Utilization
     type: ContainerResource
   - containerResource:
-      container: httpd-2
+      container: hello-2
       name: cpu
       target:
         averageUtilization: 90
@@ -39,4 +25,4 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: httpd
+    name: hello
