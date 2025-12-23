@@ -5,24 +5,27 @@ metadata:
   name: hpa-hello
   namespace: test-metrics
 spec:
-  minReplicas: 1
-  maxReplicas: 2
-  metrics:
-  - containerResource:
-      container: hello-1
-      name: cpu
-      target:
-        averageUtilization: 90
-        type: Utilization
-    type: ContainerResource
-  - containerResource:
-      container: hello-2
-      name: cpu
-      target:
-        averageUtilization: 90
-        type: Utilization
-    type: ContainerResource
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: hello
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 30
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: ContainerResource
+    containerResource:
+      name: cpu
+      container: hello-1
+      target:
+        type: Utilization
+        averageUtilization: 50
+  - type: ContainerResource
+    containerResource:
+      name: cpu
+      container: hello-2
+      target:
+        type: Utilization
+        averageUtilization: 50
