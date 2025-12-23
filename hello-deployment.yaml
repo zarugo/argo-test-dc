@@ -28,6 +28,8 @@ spec:
           requests:
             cpu: 50m
             memory: 128Mi
+          limits:
+            cpu: "100m"
         securityContext:
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
@@ -38,6 +40,8 @@ spec:
           requests:
             cpu: 50m
             memory: 128Mi
+          limits:
+            cpu: "100m"
         securityContext:
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
