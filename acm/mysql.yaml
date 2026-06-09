@@ -8,7 +8,7 @@ metadata:
   namespace: test-argo
 spec:
   progressDeadlineSeconds: 30
-  replicas: 1
+  replicas: 7
   revisionHistoryLimit: 10
   selector:
     matchLabels:
